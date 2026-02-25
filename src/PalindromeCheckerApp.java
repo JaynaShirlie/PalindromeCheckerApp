@@ -1,62 +1,28 @@
 import java.util.Scanner;
-import java.util.Stack;
 
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Input: ");
-        String input = scanner.nextLine().toLowerCase();
+        System.out.print("Input ");
+        String input = scanner.nextLine();
 
-        PalindromeStrategy stackStrategy = new StackStrategy();
-        PalindromeStrategy twoPointerStrategy = new TwoPointerStrategy();
+        long startTime = System.nanoTime();
 
-        long start1 = System.nanoTime();
-        boolean result1 = stackStrategy.check(input);
-        long end1 = System.nanoTime();
+        boolean result = checkPalindrome(input.toLowerCase());
 
-        long start2 = System.nanoTime();
-        boolean result2 = twoPointerStrategy.check(input);
-        long end2 = System.nanoTime();
+        long endTime = System.nanoTime();
 
-        System.out.println("Stack Strategy Result: " + result1);
-        System.out.println("Stack Execution Time: " + (end1 - start1) + " ns");
+        long executionTime = endTime - startTime;
 
-        System.out.println("Two Pointer Strategy Result: " + result2);
-        System.out.println("Two Pointer Execution Time: " + (end2 - start2) + " ns");
+        System.out.println("Is Palindrome?: " + result);
+        System.out.println("Execution Time: " + executionTime + " ns");
 
         scanner.close();
     }
-}
 
-interface PalindromeStrategy {
-    boolean check(String input);
-}
-
-class StackStrategy implements PalindromeStrategy {
-
-    public boolean check(String input) {
-
-        Stack<Character> stack = new Stack<>();
-
-        for (char c : input.toCharArray()) {
-            stack.push(c);
-        }
-
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-}
-
-class TwoPointerStrategy implements PalindromeStrategy {
-
-    public boolean check(String input) {
+    public static boolean checkPalindrome(String input) {
 
         int start = 0;
         int end = input.length() - 1;
