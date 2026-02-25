@@ -1,5 +1,6 @@
 public class PalindromeCheckerApp {
     public static void main (String [] args){
+
         String word = "racecar";
 
         String reversed = "";
@@ -9,7 +10,7 @@ public class PalindromeCheckerApp {
 
         if (word.equals(reversed)) {
             System.out.println("Word: " + word);
-            System.out.println("Result: It IS a palindrome.");
+            System.out.println("Result: It is a palindrome.");
         } else {
             System.out.println("Word: " + word);
             System.out.println("Result: It is NOT a palindrome.");
